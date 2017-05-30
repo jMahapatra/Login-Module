@@ -1,0 +1,43 @@
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL COMMENT 'Log Id (Serial No)',
+  `username` varchar(30) NOT NULL COMMENT 'User Name',
+  `password` varchar(100) NOT NULL COMMENT 'Password',
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `gender` varchar(20) NOT NULL,
+  `profile_picture` varchar(260) NOT NULL,
+  `created` datetime NOT NULL COMMENT 'Date Created',
+  `last_access` datetime NOT NULL COMMENT 'Last Login',
+  `user_role` varchar(20) NOT NULL COMMENT 'User Role',
+  `password_changed` datetime NOT NULL COMMENT 'Last Password Changed',
+  `primary_email` varchar(40) NOT NULL,
+  `primary_mobile` varchar(12) NOT NULL,
+  `oauth_provider` varchar(15) NOT NULL DEFAULT 'normal',
+  `social_oauthid` varchar(50) NOT NULL COMMENT 'social network auth id',
+  `social_link` varchar(260) NOT NULL,
+  `account_status` varchar(15) NOT NULL DEFAULT 'activate' COMMENT 'activate/deactivate'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `CL_UserName` (`username`),
+  ADD UNIQUE KEY `LI_primaryemail` (`primary_email`) USING BTREE,
+  ADD KEY `CL_Role` (`user_role`),
+  ADD KEY `LI_primarymobile` (`primary_mobile`) USING BTREE;
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Log Id (Serial No)';
